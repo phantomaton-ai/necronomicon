@@ -11,6 +11,8 @@
   "description": "",
   "dependencies": {
     "chai": "^5.1.1",
-    "mocha": "^10.7.3"
+    "gallows": "file:../gallows",
+    "mocha": "^10.7.3",
+    "smarkup": "file:../smarkup"
   }
 }
