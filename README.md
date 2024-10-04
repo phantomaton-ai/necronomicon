@@ -1,6 +1,6 @@
 # Necronomicon
 
-Necronomicon is a spooky, automata-inspired project that combines the power of the `gallows` execution framework and the `smarkup` directive parser. It allows you to define a set of dark, occult-themed commands (or "directives") that can be seamlessly embedded and executed within text-based documents.
+Necronomicon is a project that provides a collection of executable commands. It allows you to define a set of commands that can be seamlessly embedded and executed within text-based documents. This can be particularly useful for building more powerful chatbots and text processing applications powered by large language models (LLMs).
 
 ## Usage
 
@@ -24,7 +24,7 @@ const necro = necronomicon(options);
 The `necronomicon` function returns an object with two methods:
 
 1. `document()`: This method generates documentation for the available commands in the Necronomicon.
-2. `execute(text)`: This method takes a string of text containing smarkup directives and executes them using the provided commands.
+2. `execute(text)`: This method takes a string of text containing directives and executes them using the provided commands.
 
 Here's an example of how to use the `execute` method:
 
@@ -40,7 +40,7 @@ const result = necro.execute(text);
 console.log(result);
 ```
 
-The `execute` method will return the result of executing the provided smarkup directives.
+The `execute` method will return the result of executing the provided directives.
 
 ## Defining Commands
 
@@ -52,10 +52,10 @@ Each command in the Necronomicon is defined as an object with the following prop
 - `example`: An object with `attributes` and `body` properties, demonstrating how to use the command.
 - `description`: A description of what the command does.
 
-You can add as many commands as you'd like to the Necronomicon, and they will be available for use in your smarkup directives.
+You can add as many commands as you'd like to the Necronomicon, and they will be available for use in your directives.
 
 ## Configuring Symbols
 
-The `symbols` object in the `options` parameter allows you to customize the symbols used in the smarkup language. You can override the default symbols used for directives, attributes, bodies, and more. This can help you create a more unique and visually striking smarkup experience.
+The `symbols` object in the `options` parameter allows you to customize the symbols used in the directive syntax. You can override the default symbols used for directives, attributes, bodies, and more. This can help you create a unique and visually striking directive experience.
 
-Feel free to explore the `gallows` and `smarkup` projects to get a better understanding of how to define commands and configure the smarkup syntax. Have fun creating your own dark, spooky directives with Necronomicon!
+Feel free to explore the provided examples to get a better understanding of how to define commands and configure the directive syntax. Have fun creating your own executable directives with Necronomicon!
