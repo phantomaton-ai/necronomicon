@@ -10,9 +10,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "gallows": "^1.0.0",
+    "smarkup": "1.0.0"
+  },
+  "devDependencies": {
     "chai": "^5.1.1",
-    "gallows": "file:../gallows",
-    "mocha": "^10.7.3",
-    "smarkup": "file:../smarkup"
+    "mocha": "^10.7.3"    
   }
 }
