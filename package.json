@@ -1,20 +1,23 @@
 {
   "name": "necronomicon",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "necronomicon.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cov": "c8 -x '*.test.*' -r html --check-coverage --lines 100 npm test",
+    "test": "mocha --ignore 'node_modules/**/*' **/*.test.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "type": "module",
   "description": "",
   "dependencies": {
     "gallows": "^1.0.0",
     "smarkup": "1.0.0"
   },
   "devDependencies": {
+    "c8": "^10.1.2",
     "chai": "^5.1.1",
-    "mocha": "^10.7.3"    
+    "mocha": "^10.7.3"
   }
 }
