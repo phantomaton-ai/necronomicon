@@ -6,6 +6,10 @@
     "cov": "c8 -x '*.test.*' -r html --check-coverage --lines 100 npm test",
     "test": "mocha --ignore 'node_modules/**/*' **/*.test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phantomaton-ai/necronomicon.git"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
