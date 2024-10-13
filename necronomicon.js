@@ -10,7 +10,7 @@ class Necronomicon {
 
   document() {
     return [
-      'Commands may be executed using the Smarkup directives.',
+      'Commands may be executed using a custom directive syntax.',
       '# Directive syntax',
       this.smarkup.document(),
       '# Available commands',
