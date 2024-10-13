@@ -1,6 +1,6 @@
 {
   "name": "necronomicon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "necronomicon.js",
   "scripts": {
     "cov": "c8 -x '*.test.*' -r html --check-coverage --lines 100 npm test",
