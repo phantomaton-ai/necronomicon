@@ -20,8 +20,9 @@ class Necronomicon {
 
   execute(text) {
     const directives = this.smarkup.parse(text);
-    return directives.map(({ action, attributes, body }) =>
-      this.gallows.execute(action, attributes, body));
+    return directives.map(({ action, attributes, body }) => this.smarkup.render({
+      action, attributes, body: this.gallows.execute(action, attributes, body)
+    })).join('\n\n');
   }
 }
 
