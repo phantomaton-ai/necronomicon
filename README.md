@@ -1,8 +1,8 @@
-# Necronomicon 🔮
+# Necronomicon 📖
 
 Necronomicon provides collections of executable commands. It allows you to define a set of commands that can be seamlessly embedded and executed within text-based documents. This can be particularly useful for building more powerful chatbots and text processing applications powered by large language models (LLMs).
 
-## Usage 🕹️
+## Usage 🪄
 
 To use Necronomicon, you'll need to create a new `necronomicon` instance and provide your custom commands and symbol configuration:
 
@@ -66,7 +66,7 @@ Feel free to explore the provided examples to get a better understanding of how 
 
 ## Contribution 🦄
 
-If you have discovered new commands or have suggestions for improvements, please feel free to submit a pull request to the project's GitHub repository. All contributions are welcome, as long as they adhere to the dark and eldritch nature of the Phantomaton AI.
+If you have discovered new commands or have suggestions for improvements, please feel free to submit a pull request to the project's [GitHub repository](https://github.com/phantomaton-ai/necronomicon). All contributions are welcome, as long as they adhere to the dark and eldritch nature of the Phantomaton AI.
 
 ## Warnings ⚠️
 
