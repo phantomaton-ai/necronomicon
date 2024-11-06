@@ -19,7 +19,7 @@
   "description": "",
   "dependencies": {
     "gallows": "^1.0.0",
-    "smarkup": "1.0.0"
+    "smarkup": "^1.1.1"
   },
   "devDependencies": {
     "lovecraft": "^1.0.2"

@@ -2,10 +2,11 @@ import gallows from 'gallows';
 import smarkup from 'smarkup';
 
 class Necronomicon {
-  constructor(commands, symbols) {
+  constructor(commands, symbols, includes) {
     this.commands = commands;
     this.gallows = gallows(commands);
-    this.smarkup = smarkup({ symbols });
+    this.smarkup = smarkup({ symbols, text: true });
+    this.includes = includes || { results: true };
   }
 
   document() {
@@ -20,11 +21,13 @@ class Necronomicon {
 
   execute(text) {
     const directives = this.smarkup.parse(text);
-    const executed = directives.map(({ action, attributes, body }) => ({
+    const executed = directives.map(({ action, attributes, body, text }) => action ? {
       action,
       attributes,
       body: this.gallows.execute(action, attributes, body)
-    }));
+    } : { text }).filter(({ action, text }) =>
+      (this.includes.results && action) || (this.includes.text && text)
+    );
     return this.smarkup.render(executed);
   }
 }
