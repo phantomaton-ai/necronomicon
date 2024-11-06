@@ -26,6 +26,7 @@ const commands = [summon, curse];
 const options = { commands, symbols };
 const text = `
 /summonDemon(name:Belial, power:666)
+Hoo! Hah! Foo! Fah!
 /curseTarget(victim:Dr. Woe) {
 May the flesh of the wicked one wither and rot!
 } curseTarget!
@@ -60,6 +61,18 @@ describe('Necronomicon', () => {
       const result = necro.execute(text);
       expect(result).to.include('Summoning demon Belial with power 666');
       expect(result).not.to.include('Cursing Dr. Woe: May the flesh of the wicked one wither and rot!');
+    });
+
+    it('excludes text when not specified', () => {
+      const includes = { results: true, text: false };
+      const result = necronomicon({ ...options, includes }).execute(text);
+      expect(result).not.to.include('Hoo! Hah! Foo! Fah!');
+    });
+
+    it('includes text when specified', () => {
+      const includes = { results: false, text: true };
+      const result = necronomicon({ ...options, includes }).execute(text);
+      expect(result).to.include('Hoo! Hah! Foo! Fah!');
     });
   });
 });
