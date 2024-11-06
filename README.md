@@ -15,6 +15,10 @@ const options = {
   ],
   symbols: {
     // Configure your smarkup symbols here
+  },
+  includes: {
+    results: true, // Include results of executing directives
+    text: true // Include plain-text blocks
   }
 };
 
