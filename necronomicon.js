@@ -33,5 +33,5 @@ class Necronomicon {
 }
 
 export default function necronomicon(options) {
-  return new Necronomicon(options.commands, options.symbols);
+  return new Necronomicon(options.commands, options.symbols, options.includes);
 }
