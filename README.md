@@ -18,7 +18,8 @@ const options = {
   },
   includes: {
     results: true, // Include results of executing directives
-    text: true // Include plain-text blocks
+    text: true, // Include plain-text blocks
+    directives: true // Include directive syntax around command output
   }
 };
 
@@ -77,6 +78,7 @@ The `includes` option in the `necronomicon` options allows you to control what i
 
 - `results`: When `true`, the results of executing directives will be included in the output.
 - `text`: When `true`, any plain text blocks between directives will be included in the output.
+- `directives`: When `true`, the command output will be wrapped in the directive syntax. When `false`, the plain output will be returned.
 
 ## Contribution 🦄
 
