@@ -30,11 +30,19 @@ The `necronomicon` function returns an object with two methods:
 1. `document()`: This method generates documentation for the available commands in the Necronomicon.
 2. `execute(text)`: This method takes a string of text containing directives and executes them using the provided commands.
 
-### Directive Syntax 🕸️
+### `commands` 🧠
 
-Necronomicon uses a custom directive syntax to embed commands within text. The syntax is configurable, and you can define your own symbols for the different parts of the directive.
+Each command in the Necronomicon is defined as an object with the following properties:
 
-#### Symbols 🪄
+- `name`: The name of the command (e.g., `'summonDemon'`, `'curseTarget'`).
+- `validate(attributes, body)`: A function that validates the command's attributes and body.
+- `execute(attributes, body)`: A function that executes the command with the provided attributes and body and returns the result.
+- `example`: An object with `attributes` and `body` properties, demonstrating how to use the command.
+- `description`: A description of what the command does.
+
+You can add as many commands as you'd like to the Necronomicon, and they will be available for use in your directives.
+
+### `symbols` 🪄
 
 The available symbol configuration options are:
 
@@ -63,19 +71,7 @@ Arise, Belial, demon of the abyss!
 📜✨ summonDemon⚡️
 ```
 
-### Commands 🧠
-
-Each command in the Necronomicon is defined as an object with the following properties:
-
-- `name`: The name of the command (e.g., `'summonDemon'`, `'curseTarget'`).
-- `validate(attributes, body)`: A function that validates the command's attributes and body.
-- `execute(attributes, body)`: A function that executes the command with the provided attributes and body and returns the result.
-- `example`: An object with `attributes` and `body` properties, demonstrating how to use the command.
-- `description`: A description of what the command does.
-
-You can add as many commands as you'd like to the Necronomicon, and they will be available for use in your directives.
-
-### Includes 🔍
+### `includes` 🔍
 
 The `includes` option in the `necronomicon` options allows you to control what is included in the output when executing directives:
 
