@@ -6,7 +6,12 @@ class Necronomicon {
     this.commands = commands;
     this.gallows = gallows(commands);
     this.smarkup = smarkup({ symbols, text: true });
-    this.includes = includes || { results: true };
+    this.includes = {
+      results: true,
+      text: true,
+      directives: true,
+      ...includes
+    };
   }
 
   document() {
@@ -28,7 +33,7 @@ class Necronomicon {
     } : { text }).filter(({ action, text }) =>
       (this.includes.results && action) || (this.includes.text && text)
     );
-    return this.smarkup.render(executed);
+    return this.smarkup.render(executed, { directives: this.includes.directives });
   }
 }
 
