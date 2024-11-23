@@ -14,7 +14,7 @@ const options = {
     // Define your commands here
   ],
   symbols: {
-    // Configure your smarkup symbols here
+    // Configure your directive syntax here
   },
   includes: {
     results: true, // Include results of executing directives
@@ -30,21 +30,45 @@ The `necronomicon` function returns an object with two methods:
 1. `document()`: This method generates documentation for the available commands in the Necronomicon.
 2. `execute(text)`: This method takes a string of text containing directives and executes them using the provided commands.
 
-Here's an example of how to use the `execute` method:
+## Directive Syntax 🕸️
+
+Necronomicon uses a custom directive syntax to embed commands within text. The syntax is configurable, and you can define your own symbols for the different parts of the directive.
+
+The available symbol configuration options are:
+
+- `directive.start`: The symbol that marks the start of a directive.
+- `directive.end`: The symbol that marks the end of a directive.
+- `attributes.start`: The symbol that marks the start of the directive arguments.
+- `attributes.separator`: The symbol that separates individual arguments.
+- `pair.separator`: The symbol that separates the key and value within an argument.
+- `attributes.end`: The symbol that marks the end of the directive arguments.
+- `body.start`: The symbol that marks the start of the directive body.
+- `body.end`: The symbol that marks the end of the directive body.
+
+Here's an example of how to use custom symbols:
 
 ```javascript
-const text = `
-/summonDemon(name:Belial, power:666)
-/curseTarget(victim:Dr. Woe, hex:decay) {
-May the flesh of the wicked one wither and rot!
-} curseTarget!
-`;
-
-const result = necro.execute(text);
-console.log(result);
+const options = {
+  symbols: {
+    directive: {
+      start: '🪄✨ ',
+      end: '⚡️'
+    },
+    arguments: {
+      start: '✨🌟⭐️',
+      separator: '✨💫✨',
+      end: '⭐️🌟✨'
+    },
+    pair: {
+      separator: ' 🔮 '
+    },
+    body: {
+      start: '✨📜',
+      end: '📜✨'
+    }
+  }
+};
 ```
-
-The `execute` method will return the result of executing the provided directives.
 
 ## Defining Commands 🧠
 
@@ -57,12 +81,6 @@ Each command in the Necronomicon is defined as an object with the following prop
 - `description`: A description of what the command does.
 
 You can add as many commands as you'd like to the Necronomicon, and they will be available for use in your directives.
-
-## Configuring Symbols 🕸️
-
-The `symbols` object in the `options` parameter allows you to customize the symbols used in the directive syntax. You can override the default symbols used for directives, attributes, bodies, and more. This can help you create a unique and visually striking directive experience.
-
-Feel free to explore the provided examples to get a better understanding of how to define commands and configure the directive syntax. Have fun creating your own executable directives with Necronomicon!
 
 ## Contribution 🦄
 
