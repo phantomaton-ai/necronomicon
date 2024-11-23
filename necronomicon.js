@@ -33,7 +33,9 @@ class Necronomicon {
     } : { text }).filter(({ action, text }) =>
       (this.includes.results && action) || (this.includes.text && text)
     );
-    return this.smarkup.render(executed, { directives: this.includes.directives });
+    return this.includes.directives ?
+      this.smarkup.render(executed) :
+      executed.map(({ body, text }) => body || text).join('\n');
   }
 }
 
