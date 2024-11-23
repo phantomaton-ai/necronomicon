@@ -52,6 +52,18 @@ describe('Necronomicon', () => {
       expect(result).to.include('Cursing Dr. Woe: May the flesh of the wicked one wither and rot!');
     });
 
+    it('renders results in the same directive syntax', () => {
+      const result = necronomicon(options).execute(text);
+      expect(result).to.include('/summonDemon(name:Belial,power:666) {');
+      expect(result).to.include('/curseTarget(victim:Dr. Woe) {');
+    });
+
+    it('excludes text when not specified', () => {
+      const includes = { results: true, text: false, directives: true };
+      const result = necronomicon({ ...options, includes }).execute(text);
+      expect(result).not.to.include('Hoo! Hah! Foo! Fah!');
+    });
+
     it('excludes command output when directives are disabled', () => {
       const necro = necronomicon({ ...options, includes: { directives: false } });
       const result = necro.execute(text);
