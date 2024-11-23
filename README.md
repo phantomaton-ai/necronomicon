@@ -30,47 +30,40 @@ The `necronomicon` function returns an object with two methods:
 1. `document()`: This method generates documentation for the available commands in the Necronomicon.
 2. `execute(text)`: This method takes a string of text containing directives and executes them using the provided commands.
 
-## Directive Syntax 🕸️
+### Directive Syntax 🕸️
 
 Necronomicon uses a custom directive syntax to embed commands within text. The syntax is configurable, and you can define your own symbols for the different parts of the directive.
 
+#### Symbols 🪄
+
 The available symbol configuration options are:
 
-- `directive.start`: The symbol that marks the start of a directive.
-- `directive.end`: The symbol that marks the end of a directive.
-- `attributes.start`: The symbol that marks the start of the directive arguments.
-- `attributes.separator`: The symbol that separates individual arguments.
-- `pair.separator`: The symbol that separates the key and value within an argument.
-- `attributes.end`: The symbol that marks the end of the directive arguments.
-- `body.start`: The symbol that marks the start of the directive body.
-- `body.end`: The symbol that marks the end of the directive body.
+- `directive.start` and `directive.end`: The symbols that mark the start and end of a directive.
+- `attributes.start`, `attributes.separator`, `pair.separator`, and `attributes.end`: The symbols used for directive arguments.
+- `body.start` and `body.end`: The symbols that mark the start and end of the directive body.
 
 Here's an example of how to use custom symbols:
 
 ```javascript
 const options = {
   symbols: {
-    directive: {
-      start: '🪄✨ ',
-      end: '⚡️'
-    },
-    arguments: {
-      start: '✨🌟⭐️',
-      separator: '✨💫✨',
-      end: '⭐️🌟✨'
-    },
-    pair: {
-      separator: ' 🔮 '
-    },
-    body: {
-      start: '✨📜',
-      end: '📜✨'
-    }
+    directive: { start: '🪄✨ ', end: '⚡️' },
+    arguments: { start: '✨🌟⭐️', separator: '✨💫✨', end: '⭐️🌟✨' },
+    pair: { separator: ' 🔮 ' },
+    body: { start: '✨📜', end: '📜✨' }
   }
 };
 ```
 
-## Defining Commands 🧠
+An example directive using these symbols would look like:
+
+```
+🪄✨ summonDemon(name 🔮 Belial, power 🔮 666) ✨📜
+Arise, Belial, demon of the abyss!
+📜✨ summonDemon⚡️
+```
+
+### Commands 🧠
 
 Each command in the Necronomicon is defined as an object with the following properties:
 
@@ -81,6 +74,13 @@ Each command in the Necronomicon is defined as an object with the following prop
 - `description`: A description of what the command does.
 
 You can add as many commands as you'd like to the Necronomicon, and they will be available for use in your directives.
+
+### Includes 🔍
+
+The `includes` option in the `necronomicon` options allows you to control what is included in the output when executing directives:
+
+- `results`: When `true`, the results of executing directives will be included in the output.
+- `text`: When `true`, any plain text blocks between directives will be included in the output.
 
 ## Contribution 🦄
 
