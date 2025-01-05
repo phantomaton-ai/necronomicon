@@ -10,17 +10,24 @@ class Necronomicon {
       results: true,
       text: true,
       directives: true,
+      descriptions: true,
       ...includes
     };
   }
 
   document() {
+    const commands = this.includes.descriptions ? this.commands.map(command => [
+      `## ${command.name}`,
+      command.description,
+      this.smarkup.render([{ action: command.name, ...command.example }]),
+    ].join('\n\n')).join('\n\n') : this.smarkup.render(this.gallows.examples());
+
     return [
       'Commands may be executed using a custom directive syntax.',
       '# Directive syntax',
       this.smarkup.document(),
       '# Available commands',
-      this.smarkup.render(this.gallows.examples()),
+      commands
     ].join('\n\n');
   }
 
