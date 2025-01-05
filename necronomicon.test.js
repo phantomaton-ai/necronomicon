@@ -41,6 +41,20 @@ describe('Necronomicon', () => {
       expect(doc).to.include('summonDemon');
       expect(doc).to.include('curseTarget');
     });
+
+    it('includes descriptions when not specified', () => {
+      const includes = { results: true, text: false, directives: true };
+      const result = necronomicon({ ...options, includes }).document();
+      expect(result).to.include(summon.description);
+      expect(result).to.include(curse.description);
+    });
+
+    it('excludes descriptions when specified', () => {
+      const includes = { results: true, text: false, directives: true, descriptions: false };
+      const result = necronomicon({ ...options, includes }).document();
+      expect(result).not.to.include(summon.description);
+      expect(result).not.to.include(curse.description);
+    });
   });
 
   describe('execute', () => {
