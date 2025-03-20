@@ -87,6 +87,21 @@ describe('Necronomicon', () => {
       expect(result).to.include('Cursing Dr. Woe: May the flesh of the wicked one wither and rot!');
     });
 
+    it('resolves promises when enabled', async () => {
+      const necro = necronomicon({
+        ...options,
+        commands: commands.map(c => ({
+          ...c, execute: (...a) => Promise.resolve(c.execute(...a))
+        })),
+        includes: { promises: true }
+      });
+      const result = await necro.execute(text);
+      expect(result).to.include('/summonDemon(name:Belial,power:666) {');
+      expect(result).to.include('Summoning demon Belial with power 666');
+      expect(result).to.include('/curseTarget(victim:Dr. Woe) {');
+      expect(result).to.include('Cursing Dr. Woe: May the flesh of the wicked one wither and rot!');
+    });
+
     it('ignores unknown commands', () => {
       const necro = necronomicon({ commands: [summon], symbols });
       const result = necro.execute(text);

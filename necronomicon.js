@@ -55,11 +55,12 @@ class Necronomicon {
 
     const executed = filter(map(directives, (
       { action, attributes, body, text }
-    ) => action ? {
-      action,
-      attributes,
-      body: this.gallows.execute(action, attributes, body)
-    } : { text }), ({ action, text }) =>
+    ) => action ? apply(
+      this.gallows.execute(action, attributes, body),
+      executed => ({
+        action, attributes, body: executed 
+      })
+    ) : { text }), ({ action, text }) =>
       (this.includes.results && action) || (this.includes.text && text)
     );
 
