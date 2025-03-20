@@ -9,11 +9,13 @@ const asynchrony = {
     }
     return results;
   },
-  filter: async (array, fn) => fn(await array)
+  filter: async (array, fn) => (await array).filter(fn),
+  apply: async (array, fn) => fn(await array)
 };
 const synchrony = {
   map: (array, fn) => array.map(fn),
-  filter: (array, fn) => array.filter(fn)
+  filter: (array, fn) => array.filter(fn),
+  apply: (array, fn) => fn(array)
 };
 
 class Necronomicon {
@@ -49,7 +51,7 @@ class Necronomicon {
 
   execute(text) {
     const directives = this.smarkup.parse(text);
-    const { map, filter } = this.includes.promises ? asynchrony : synchrony;
+    const { apply, map, filter } = this.includes.promises ? asynchrony : synchrony;
 
     const executed = filter(map(directives, (
       { action, attributes, body, text }
@@ -61,9 +63,11 @@ class Necronomicon {
       (this.includes.results && action) || (this.includes.text && text)
     );
 
-    return this.includes.directives ?
-      this.smarkup.render(executed) :
-      executed.map(({ body, text }) => body || text).join('\n');
+    const postprocess =  this.includes.directives ?
+      executed => this.smarkup.render(executed) :
+      executed => executed.map(({ body, text }) => body || text).join('\n');
+    
+    return apply(executed, postprocess);
   }
 }
 
