@@ -1,6 +1,21 @@
 import gallows from 'gallows';
 import smarkup from 'smarkup';
 
+const asynchrony = {
+  map: async (array, fn) => {
+    const results = [];
+    for (let index = 0; index < array.length; index += 1) {
+      results.push(await fn(array[index], index));        
+    }
+    return results;
+  },
+  filter: async (array, fn) => fn(await array)
+};
+const synchrony = {
+  map: (array, fn) => array.map(fn),
+  filter: (array, fn) => array.filter(fn)
+};
+
 class Necronomicon {
   constructor(commands, symbols, includes) {
     this.commands = commands;
@@ -11,6 +26,7 @@ class Necronomicon {
       text: true,
       directives: true,
       descriptions: true,
+      promises: false,
       ...includes
     };
   }
@@ -33,13 +49,18 @@ class Necronomicon {
 
   execute(text) {
     const directives = this.smarkup.parse(text);
-    const executed = directives.map(({ action, attributes, body, text }) => action ? {
+    const { map, filter } = this.includes.promises ? asynchrony : synchrony;
+
+    const executed = filter(map(directives, (
+      { action, attributes, body, text }
+    ) => action ? {
       action,
       attributes,
       body: this.gallows.execute(action, attributes, body)
-    } : { text }).filter(({ action, text }) =>
+    } : { text }), ({ action, text }) =>
       (this.includes.results && action) || (this.includes.text && text)
     );
+
     return this.includes.directives ?
       this.smarkup.render(executed) :
       executed.map(({ body, text }) => body || text).join('\n');
